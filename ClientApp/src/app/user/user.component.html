@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="user.name">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Возраст</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="user.age">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3" (click)="setUser()">Confirm identity</button>
+    </div>
+</div>
