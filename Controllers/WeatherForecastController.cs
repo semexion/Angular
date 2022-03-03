@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Angular.Models;
 
 namespace Angular.Controllers;
 
@@ -12,22 +13,17 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    ApplicationContext _db;
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, ApplicationContext Dbcontext)
     {
         _logger = logger;
+        _db = Dbcontext;
     }
 
     [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<Product> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now,
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return _db.Products.ToArray();
     }
     [HttpPost]
     public IActionResult Post(User user)

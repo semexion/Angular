@@ -1,10 +1,18 @@
+using System.Security.AccessControl;
+using System.ComponentModel;
+using Angular.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+string connectionString = "Filename=MyDatabase.db";
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connectionString));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +30,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");;
+app.MapFallbackToFile("index.html"); ;
 
 app.Run();
